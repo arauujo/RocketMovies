@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   height: 223px;
   padding: 32px;
@@ -22,10 +21,11 @@ export const Container = styled.div`
 
   > .ratings svg {
     stroke: ${({ theme }) => theme.COLORS.PINK};
-    margin-right: 6px;
+    margin: 8px 6px 0 0;
   }
 
   > p {
+    margin-top: 15px;
     font-size: 16px;
     color: ${({ theme }) => theme.COLORS.GRAY_150};
     display: -webkit-box;
