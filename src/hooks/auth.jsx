@@ -23,6 +23,13 @@ function AuthProvider({ children }) {
       }
     }
   }
+
+  function signOut() {
+    localStorage.removeItem('@rocketmovies:token');
+    localStorage.removeItem('@rocketmovies:user');
+
+    setData({});
+  }
 }
 
 export { AuthProvider };
