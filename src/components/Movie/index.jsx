@@ -13,7 +13,7 @@ export function Movie({ data, ...rest }) {
         <FiStar />
         <FiStar />
       </div>
-      <p>{data.presentation}</p>
+      <p>{data.description}</p>
 
       {data.tags && (
         <footer>
