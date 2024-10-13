@@ -1,6 +1,7 @@
-import { Container, Form } from './styles';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { api } from '../../services/api';
 import { Header } from '../../components/Header';
 import { ButtonText } from '../../components/ButtonText';
 import { Input } from '../../components/Input';
@@ -8,8 +9,54 @@ import { Textarea } from '../../components/Textarea';
 import { Section } from '../../components/Section';
 import { MovieTag } from '../../components/MovieTag';
 import { Button } from '../../components/Button';
+import { Container, Form } from './styles';
 
 export function New() {
+  const [title, setTitle] = useState('');
+  const [rating, setRating] = useState('');
+  const [description, setDescription] = useState('');
+
+  const [movieTags, setMovieTags] = useState([]);
+  const [newMovieTag, setNewMovieTag] = useState('');
+
+  const navigate = useNavigate();
+
+  function handleBack() {
+    navigate(-1);
+  }
+
+  function handleAddTag() {
+    setMovieTags(prevState => [...prevState, newMovieTag]);
+    setNewMovieTag('');
+  }
+
+  function handleRemoveTag(deleted) {
+    setMovieTags(prevState => prevState.filter(tag => tag !== deleted));
+  }
+
+  async function handleNewMovie() {
+    if (!title) {
+      return alert('Digite o título do filme.');
+    }
+
+    if (newMovieTag) {
+      return alert(
+        'Existe um marcador preenchido. Adicione-o antes ou deixe o campo vazio.'
+      );
+    }
+
+    await api.post('/movie_notes', {
+      title,
+      description,
+      rating,
+      movie_tags: movieTags,
+    });
+
+    alert('Filme adicionado com sucesso!');
+
+    navigate(-1);
+  }
+
   return (
     <Container>
       <Header />
@@ -17,29 +64,56 @@ export function New() {
       <main>
         <Form>
           <header>
-            <Link to="/">
+            <ButtonText title="Voltar" isActive onClick={handleBack}>
               <FiArrowLeft />
-              <ButtonText title="Voltar" isActive />
-            </Link>
+            </ButtonText>
             <h1>Novo filme</h1>
           </header>
 
           <div>
-            <Input type="text" placeholder="Título" />
-            <Input type="number" placeholder="Sua nota (de 0 a 5)" />
+            <Input
+              type="text"
+              placeholder="Título"
+              onChange={e => setTitle(e.target.value)}
+            />
+            <Input
+              type="number"
+              placeholder="Sua nota (de 0 a 5)"
+              onChange={e => setRating(e.target.value)}
+            />
           </div>
-          <Textarea placeholder="Observações" />
+          <Textarea
+            placeholder="Observações"
+            onChange={e => setDescription(e.target.value)}
+          />
 
           <Section title="Marcadores">
             <div className="tags">
-              <MovieTag value="React" />
-              <MovieTag isNew placeholder="Novo marcador" />
+              {movieTags.map((movie_tag, index) => (
+                <MovieTag
+                  key={String(index)}
+                  value={movie_tag}
+                  onClick={() => handleRemoveTag(movie_tag)}
+                />
+              ))}
+
+              <MovieTag
+                isNew
+                placeholder="Novo marcador"
+                onChange={e => setNewMovieTag(e.target.value)}
+                value={newMovieTag}
+                onClick={handleAddTag}
+              />
             </div>
           </Section>
 
           <div className="buttons">
-            <Button className="secondary" title="Excluir filme" />
-            <Button title="Salvar alterações" />
+            <Button
+              className="secondary"
+              title="Excluir filme"
+              onClick={handleBack}
+            />
+            <Button title="Salvar alterações" onClick={handleNewMovie} />
           </div>
         </Form>
       </main>
