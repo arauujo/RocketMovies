@@ -31,7 +31,7 @@ export const Form = styled.form`
     flex-direction: column;
     margin-bottom: 40px;
 
-    a {
+    button {
       display: flex;
       align-items: center;
       gap: 8px;
