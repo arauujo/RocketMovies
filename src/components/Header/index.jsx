@@ -2,12 +2,12 @@ import { Container, Profile } from './styles';
 import { Link } from 'react-router-dom';
 import { Input } from '../Input';
 
-export function Header() {
+export function Header({ onSearchChange }) {
   return (
     <Container>
       <h1>RocketMovies</h1>
 
-      <Input placeholder="Pesquisar pelo título" />
+      <Input placeholder="Pesquisar pelo título" onChange={onSearchChange} />
 
       <Profile to="/profile">
         <div>
