@@ -35,26 +35,34 @@ export function New() {
   }
 
   async function handleNewMovie() {
-    if (!title) {
-      return alert('Digite o título do filme.');
+    try {
+      if (!title) {
+        return alert('Digite o título do filme.');
+      }
+  
+      if (newMovieTag) {
+        return alert(
+          'Existe um marcador preenchido. Adicione-o antes ou deixe o campo vazio.'
+        );
+      }
+  
+      await api.post('/movie_notes', {
+        title,
+        description,
+        rating,
+        movie_tags: movieTags,
+      });
+  
+      alert('Filme adicionado com sucesso!');
+  
+      navigate(-1);
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert('Não foi possível adicionar o filme!');
+      }
     }
-
-    if (newMovieTag) {
-      return alert(
-        'Existe um marcador preenchido. Adicione-o antes ou deixe o campo vazio.'
-      );
-    }
-
-    await api.post('/movie_notes', {
-      title,
-      description,
-      rating,
-      movie_tags: movieTags,
-    });
-
-    alert('Filme adicionado com sucesso!');
-
-    navigate(-1);
   }
 
   return (
