@@ -32,7 +32,7 @@ export const Content = styled.div`
     cursor: n-resize;
   }
 
-  > a {
+  > button {
     display: flex;
     align-items: center;
     gap: 8px;
