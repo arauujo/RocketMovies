@@ -9,9 +9,16 @@ export default createGlobalStyle`
   }
 
   body {
+    height: 100vh;
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_950};
     color: ${({ theme }) => theme.COLORS.WHITE};
     -webkit-font-smoothing: antialiased;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &::-webkit-scrollbar {
