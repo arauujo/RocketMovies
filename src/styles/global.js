@@ -31,7 +31,11 @@ export default createGlobalStyle`
     border-radius: 8px;
   }
 
-  &::-webkit-scrollbar-thumb:hover {
+  &::-webkit-scrollbar-thumb:horizontal:hover {
+    cursor: ew-resize;
+  }
+
+  &::-webkit-scrollbar-thumb:vertical:hover {
     cursor: n-resize;
   }
 
