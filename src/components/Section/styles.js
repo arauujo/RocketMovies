@@ -28,18 +28,4 @@ export const ScrollableContent = styled.div`
   margin-top: 16px;
   padding-right: 8px;
   overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 8px; 
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.COLORS.PINK};
-    border-radius: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    cursor: n-resize;
-  }
 `;

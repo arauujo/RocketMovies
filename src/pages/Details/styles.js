@@ -18,20 +18,6 @@ export const Content = styled.div`
   flex-direction: column;
   overflow: auto;
 
-  &::-webkit-scrollbar {
-    width: 8px; 
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.COLORS.PINK};
-    border-radius: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    cursor: n-resize;
-  }
-
   > button {
     display: flex;
     align-items: center;

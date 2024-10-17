@@ -12,20 +12,6 @@ export const Form = styled.form`
   max-height: 80vh;
   overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 8px; 
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.COLORS.PINK};
-    border-radius: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    cursor: n-resize;
-  }
-
   > header {
     display: flex;
     flex-direction: column;
