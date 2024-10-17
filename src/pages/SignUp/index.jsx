@@ -18,20 +18,24 @@ export function SignUp() {
       return alert('É necessário preencher todos os campos!');
     }
 
-    api
-      .post('/users', { name, email, password })
-      .then(() => {
-        alert('Usuário cadastrado com sucesso!');
-        navigate('/');
-      })
-      .catch(error => {
-        if (error.response) {
-          alert(error.response.data.message);
-        } else {
-          alert('Não foi possível cadastrar!');
-        }
-      });
+    api.post('/users', { name, email, password }).then(() => {
+      alert('Usuário cadastrado com sucesso!');
+      navigate('/');
+    }).catch(error => {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert('Não foi possível cadastrar!');
+      }
+    });
   }
+
+  function handleKeydown(evt) {
+    if (evt.key === 'Enter') {
+      handleSignUp();
+    }
+  }
+
   return (
     <Container>
       <Form>
@@ -60,6 +64,7 @@ export function SignUp() {
           placeholder="Senha"
           icon={FiLock}
           onChange={e => setPassword(e.target.value)}
+          onKeyDown={handleKeydown}
         />
 
         <Button title="Cadastrar" onClick={handleSignUp} />
