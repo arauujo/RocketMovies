@@ -1,8 +1,17 @@
-import { Container, Profile } from './styles';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 import { Input } from '../Input';
+import { Container, Profile, Logout } from './styles';
 
 export function Header({ onSearchChange }) {
+  const navigate = useNavigate();
+  const { signOut, user } = useAuth();
+
+  function handleSignOut() {
+    signOut();
+    navigate('/');
+  }
+
   return (
     <Container>
       <h1>RocketMovies</h1>
@@ -11,13 +20,11 @@ export function Header({ onSearchChange }) {
 
       <Profile to="/profile">
         <div>
-          <strong>Wesley Araujo</strong>
-          <a>sair</a>
+          <strong>{user.name}</strong>
+          <Logout onClick={handleSignOut}>sair</Logout>
         </div>
 
-        <Link to="/profile">
-          <img src="https://github.com/arauujo.png" alt="Foto do usuário" />
-        </Link>
+        <img src={user.avatar} alt={`Foto de ${user.name}`} />
       </Profile>
     </Container>
   );
