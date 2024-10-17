@@ -22,7 +22,7 @@ export const Profile = styled.div`
   display: flex;
   align-items: center;
 
-  > a img {
+  > img {
     width: 64px;
     height: 64px;
     border-radius: 50%;
@@ -34,15 +34,17 @@ export const Profile = styled.div`
     align-items: end;
     margin-right: 16px;
 
-    a {
-      font-size: 14px;
-      color: ${({ theme }) => theme.COLORS.GRAY_200};
-    }
-
     strong {
       white-space: nowrap;
       font-size: 14px;
       color: ${({ theme }) => theme.COLORS.WHITE};
     }
   }
+`;
+
+export const Logout = styled.button`
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: ${({ theme }) => theme.COLORS.GRAY_200};
 `;
