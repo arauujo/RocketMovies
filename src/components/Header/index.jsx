@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { Input } from '../Input';
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 import { Container, Profile, Logout } from './styles';
 
 export function Header({ onSearchChange }) {
@@ -11,6 +13,10 @@ export function Header({ onSearchChange }) {
     signOut();
     navigate('/');
   }
+
+  const avatarUrl = user.avatar
+  ? `${api.defaults.baseURL}/files/${user.avatar}`
+  : avatarPlaceholder;
 
   return (
     <Container>
@@ -24,7 +30,7 @@ export function Header({ onSearchChange }) {
           <Logout onClick={handleSignOut}>sair</Logout>
         </div>
 
-        <img src={user.avatar} alt={`Foto de ${user.name}`} />
+        <img src={avatarUrl} alt={`Foto de ${user.name}`} />
       </Profile>
     </Container>
   );
