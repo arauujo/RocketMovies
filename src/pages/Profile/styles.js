@@ -12,7 +12,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
 
-    a {
+    button {
       display: flex;
       align-items: center;
       gap: 8px;
