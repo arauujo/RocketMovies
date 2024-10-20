@@ -41,9 +41,8 @@ export const Content = styled.div`
     }
 
     .ratings {
-      margin-top: 4px;
       display: flex;
-      align-items: center;      
+      gap: 10px;
     }
   }
 
