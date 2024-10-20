@@ -14,6 +14,7 @@ export const Container = styled.header`
   gap: 64px;
 
   > h1 {
+    cursor: pointer;
     font-size: 24px;
     color: ${({ theme }) => theme.COLORS.PINK};
   }
