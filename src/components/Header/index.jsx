@@ -13,6 +13,10 @@ export function Header({ onSearchChange }) {
     signOut();
     navigate('/');
   }
+  
+  function handleLogoClick() {
+    navigate('/');
+  }
 
   const avatarUrl = user.avatar
   ? `${api.defaults.baseURL}/files/${user.avatar}`
@@ -20,7 +24,7 @@ export function Header({ onSearchChange }) {
 
   return (
     <Container>
-      <h1>RocketMovies</h1>
+      <h1 onClick={handleLogoClick}>RocketMovies</h1>
 
       <Input placeholder="Pesquisar pelo título" onChange={onSearchChange} />
 
