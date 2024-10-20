@@ -15,10 +15,8 @@ export function New() {
   const [title, setTitle] = useState('');
   const [rating, setRating] = useState('');
   const [description, setDescription] = useState('');
-
   const [movieTags, setMovieTags] = useState([]);
   const [newMovieTag, setNewMovieTag] = useState('');
-
   const navigate = useNavigate();
 
   function handleBack() {
@@ -53,8 +51,7 @@ export function New() {
         movie_tags: movieTags,
       });
   
-      alert('Filme adicionado com sucesso!');
-  
+      alert('Filme adicionado com sucesso!');  
       navigate(-1);
     } catch (error) {
       if (error.response) {
@@ -62,6 +59,13 @@ export function New() {
       } else {
         alert('Não foi possível adicionar o filme!');
       }
+    }
+  }
+
+  function handleRatingChange(e) {
+    const value = e.target.value;
+    if (/^\d*$/.test(value) && (value === '' || parseInt(value) <= 5)) {
+      setRating(value);
     }
   }
 
@@ -87,7 +91,8 @@ export function New() {
             <Input
               type="number"
               placeholder="Sua nota (de 0 a 5)"
-              onChange={e => setRating(e.target.value)}
+              value={rating}
+              onChange={handleRatingChange}
             />
           </div>
           <Textarea
